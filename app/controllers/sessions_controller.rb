@@ -1,9 +1,16 @@
 class SessionsController < ApplicationController
   def create
     if request.env["omniauth.auth"]
+      c = User.new_user(request.env['omniauth.auth'])
       user = User.from_auth(request.env['omniauth.auth'])
       session[:user_id] = user.id
-      redirect_to posts_path, notice: "Welcome #{user.nickname}" 
+      flash[:notice] = "Welcome #{user.nickname}"
+      if c 
+        redirect_to user_steps_path
+      else
+        redirect_to posts_path
+      end
+    
     else 
       user = User.find_by_email(params[:email]) 
       if user && user.authenticate(params[:password])

@@ -1,0 +1,12 @@
+<%= form_for @user, url: wizard_path do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+       <h2><%= pluralize(@user.errors.count, error) %>Prohibited this userto be signed!</h2>
+       <ul>
+         <% @user.errors.full_message.each do |msg| %>
+         <li>msg</li>
+         <% end %>
+       </ul>
+    </div>
+  <% end %>
+<% end %>

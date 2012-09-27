@@ -9,8 +9,14 @@ class User < ActiveRecord::Base
   def add_auth(auth)
     authentications.create(:provider => auth[:provider], :uid => auth[:uid])
   end
-
-  class << self
+ class << self
+  def new_user(auth)
+    if User.find_by_email(auth[:info][:email])
+      a = false 
+    else
+      a = true
+    end
+  end
     def from_auth(auth)
       locate_auth(auth) || locate_email(auth) || create_user(auth)      
     end
@@ -27,7 +33,8 @@ class User < ActiveRecord::Base
     def create_user(auth)
       user = create!(
            :nickname => auth[:info][:nickname], 
-           :email => auth[:info][:email])
+           :email => auth[:info][:email],
+           :password => Time.now.to_s )
       user.authentications.build(provider: auth[:provider],
                                  uid: auth[:uid])
       user

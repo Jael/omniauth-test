@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user
-      redirect_to posts_path, notice: "Signed up sucessfully!"
+      redirect_to user_steps_path, notice: "Signed up sucessfully!"
     else
       render :new
     end
