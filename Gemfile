@@ -11,6 +11,9 @@ gem 'therubyracer'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'wicked'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'acts-as-taggable-on'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

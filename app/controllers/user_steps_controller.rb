@@ -12,6 +12,10 @@ class UserStepsController < ApplicationController
     @user.attributes = params[:user]
     render_wizard @user
   end
+ 
+  def finish_wizard_path
+    posts_path
+  end
 end
 
 

@@ -9,4 +9,10 @@
        </ul>
     </div>
   <% end %>
+  <%= yield f %>
+  <div class="actions">
+    <%= link_to "preview", previous_wizard_path %>
+     <%= f.submit "Continue"  %>
+      <%= link_to "skip this step", next_wizard_path %>
+  </div>
 <% end %>

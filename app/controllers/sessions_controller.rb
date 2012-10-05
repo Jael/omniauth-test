@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       if c 
         redirect_to user_steps_path
       else
-        redirect_to posts_path
+        redirect_to user_posts_path(user)
       end
     
     else 
@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to posts_path, notice: "Successfully Sign out!"
+    redirect_to log_in_path, notice: "Successfully Sign out!"
+
   end
 end

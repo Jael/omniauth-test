@@ -1,0 +1,3 @@
+Successfully signed up!
+Welcome  <%= @user.email%>
+url: <%= @url>

@@ -10,18 +10,18 @@
     </ul>
   <% end %>
   <div class="field">
-     <%= f.label :email  %>
-     <%= f.text_field :email %>
+     <%= f.label :email  %><br />
+     <%= mark_required @user, :email %><%= f.text_field :email %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>    
-    <%= f.password_field :password %>
+    <%= f.label :password %><br />
+    <%= mark_required @user, :password %><%= f.password_field :password %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :password_confirmation %><br />
+   <%= mark_required @user, :password%> <%= f.password_field :password_confirmation %>
   </div>
 
   <div class="actions">

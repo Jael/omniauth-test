@@ -5,7 +5,12 @@
   <%= link_to "log out", log_out_path %>
   <% else %>
   <%= link_to "log in", log_in_path %>
-  <% end %>
+<% end %>
+  <div id="tag_cloud">
+    <% tag_cloud Post.tag_counts, %w[s m l] do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+    <% end %>
+  </div>
   <tr>
     <th>Title</th>
     <th>Content</th>
@@ -18,13 +23,16 @@
   <tr>
     <td><%= post.title %></td>
     <td><%= post.content %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <tr>
+    <td>Tags: <%= raw post.tag_list.map {|t| link_to t, tag_path(t)}.join(', ') %></td>
+    <td><%= link_to 'Show', post %>
+    <%= link_to 'Edit', edit_user_post_path(post) %>
+    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'New Post', new_user_post_path %>

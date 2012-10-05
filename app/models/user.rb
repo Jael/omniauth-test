@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :nickname, :password, :password_confirmation 
+  attr_accessible :email, :nickname, :password, :password_confirmation, :date_of_birth, :bio, :website, :qq, :telephone, :name
   has_many :authentications
   validates :email, presence: true, uniqueness: true
   validates_presence_of :password, :on => :create
   accepts_nested_attributes_for :authentications
+  has_many :posts
   has_secure_password
 
   def add_auth(auth)
@@ -39,5 +40,6 @@ class User < ActiveRecord::Base
                                  uid: auth[:uid])
       user
     end
-  end
 end
+end
+

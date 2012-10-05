@@ -1,8 +1,7 @@
-<%= form_for(@post) do |f| %>
+<%= form_for @post, :html => {:multipart => true} do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
       <% @post.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -16,10 +15,20 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
+    <%= f.label :tag_list, "Tag" %>
+    <%= f.text_field :tag_list %>
+  </div>
+  <div class="field">
     <%= f.label :content %><br />
     <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.file_field :image %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+
