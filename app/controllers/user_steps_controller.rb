@@ -14,7 +14,7 @@ class UserStepsController < ApplicationController
   end
  
   def finish_wizard_path
-    posts_path
+    user_posts_path(current_user)
   end
 end
 
